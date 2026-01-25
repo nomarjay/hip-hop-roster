@@ -1,0 +1,29 @@
+# =====================
+# ENV FILES (SECRETS)
+# =====================
+.env
+.env.*
+*.env
+application-local.properties
+backend/src/main/resources/application-local.properties
+
+
+# =====================
+# FRONTEND (React)
+# =====================
+node_modules/
+dist/
+
+# =====================
+# BACKEND (Spring Boot)
+# =====================
+target/
+*.log
+
+# =====================
+# IDE / OS
+# =====================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

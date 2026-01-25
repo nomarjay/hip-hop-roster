@@ -1,0 +1,25 @@
+# dependencies
+node_modules
+dist
+build
+target
+
+# env / secrets
+.env
+.env.*
+
+# logs
+*.log
+
+# generated files
+coverage
+*.min.js
+
+# database
+*.db
+*.sqlite
+
+# lock files (optional)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
