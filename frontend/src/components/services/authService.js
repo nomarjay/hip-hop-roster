@@ -1,21 +1,24 @@
 import axios from 'axios';
 
-const API_BASE_URL = '/api/auth';
+const API_BASE_URL = 'http://104.236.121.210:8086/api/auth';
 
 export const login = async (username, password) => {
-	const response = await axios.post(`${API_BASE_URL}/login`, {
-		username,
-		password,
-	});
+    try {
+        const response = await api.post('/auth/login', { username, password });
 
-	if (response.data.token) {
-		localStorage.setItem('authToken', response.data.token);
-		localStorage.setItem('username', response.data.username);
-		localStorage.setItem('role', response.data.role);
-	}
-
-	return response.data;
+        if (response.data.token) {
+            localStorage.setItem('authtoken', response.data.token);
+            localStorage.setItem('username', response.data.username);
+            localStorage.setItem('role', response.data.role);
+        }
+        return response.data;
+    } catch (error) {
+        console.error('Login failed:', error.response?.data || error.message);
+        throw error; // Re-throw so your UI can show an error message
+    }
 };
+
+
 
 export const logout = () => {
 	localStorage.removeItem('authToken');
