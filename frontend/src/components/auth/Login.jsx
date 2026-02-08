@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
 import { Lock, User } from 'lucide-react';
+import api from '../services/api'; // Or wherever your axios instance is defined
 
 const Login = () => {
 	const [username, setUsername] = useState('');
