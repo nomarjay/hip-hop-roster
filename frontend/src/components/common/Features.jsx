@@ -1,4 +1,6 @@
 import { Target, BarChart3, Award, Zap, Shield, TrendingUp } from 'lucide-react';
+import React from 'react';
+
 
 const Features = () => {
     const features = [

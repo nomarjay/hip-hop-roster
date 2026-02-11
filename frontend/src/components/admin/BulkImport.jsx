@@ -13,6 +13,8 @@ import {
   CheckCircle,
   Copy,
 } from "lucide-react";
+import React from 'react';
+
 
 const BulkImport = ({ onClose, onSuccess }) => {
   const [importType, setImportType] = useState("json");

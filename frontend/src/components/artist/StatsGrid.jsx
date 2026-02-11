@@ -1,5 +1,7 @@
 import { getTierColors } from '../utils/tierColors';
 import { BarChart3 } from 'lucide-react';
+import React from 'react';
+
 
 const StatsGrid = ({ artist }) => {
 	const colors = getTierColors(artist.overallTier);

@@ -1,5 +1,6 @@
 import { getTierColors } from '../utils/tierColors';
 import { Award } from 'lucide-react';
+import React from 'react';
 
 const BadgeSection = ({ artist }) => {
 	const colors = getTierColors(artist.overallTier);

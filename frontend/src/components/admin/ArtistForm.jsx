@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { createArtist, updateArtist } from "../services/api";
 import { X } from "lucide-react";
+import React from 'react';
+
 
 const ArtistForm = ({ artist, onClose }) => {
   const [formData, setFormData] = useState({

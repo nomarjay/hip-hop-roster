@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import RosterCard from './RosterCard';
-import Searchbar from '../Searchbar';
+import Searchbar from '../common/Searchbar';
 import { Filter } from 'lucide-react';
+import React from 'react';
+
 
 const RosterView = ({ artists }) => {
 	const [searchTerm, setSearchTerm] = useState('');

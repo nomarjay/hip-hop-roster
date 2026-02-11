@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { getTierColors } from '../utils/tierColors';
 import { Crown, Trophy, Star, Flame } from 'lucide-react';
+import React from 'react';
 
 const RosterCard = ({ artist }) => {
 	const navigate = useNavigate();

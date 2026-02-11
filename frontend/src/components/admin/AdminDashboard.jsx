@@ -9,6 +9,8 @@ import { getAllArtists, deleteArtist } from '../services/api';
 import ArtistForm from './ArtistForm';
 import BulkImport from './BulkImport';
 import { Plus, Edit, Trash2, LogOut, User, Upload } from 'lucide-react';
+import React from 'react';
+
 
 const AdminDashboard = () => {
 	const navigate = useNavigate();

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Trophy, Home, Shield, List } from 'lucide-react';
 import { isAuthenticated } from '../services/authService';
+import React from 'react';
+
 
 const Navbar = () => {
     return (

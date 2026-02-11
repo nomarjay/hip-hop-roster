@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Trophy, ArrowRight, Star, TrendingUp, Users } from 'lucide-react';
+import React from 'react';
+
 
 const Header = () => {
     return (

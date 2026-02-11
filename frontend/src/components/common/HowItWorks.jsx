@@ -1,4 +1,5 @@
 import { Search, BarChart, Trophy } from 'lucide-react';
+import React from 'react';
 
 const HowItWorks = () => {
     const steps = [

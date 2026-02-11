@@ -1,6 +1,7 @@
 import Header from './Header';
 import Features from './Features';
 import HowItWorks from './HowItWorks';
+import React from 'react';
 
 const HomePage = () => {
     return (

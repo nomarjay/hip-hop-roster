@@ -3,6 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 import ArtistHeader from './ArtistHeader';
 import StatsGrid from './StatsGrid';
 import BadgeSection from './BadgeSection';
+import React from 'react';
+
 
 const ArtistDetailView = ({ artists }) => {
 	const { id } = useParams();

@@ -1,5 +1,7 @@
 import { getTierColors } from '../utils/tierColors';
 import { Crown, Trophy, Star, Flame } from 'lucide-react';
+import React from 'react';
+
 
 const ArtistHeader = ({ artist }) => {
 	const colors = getTierColors(artist.overallTier);
