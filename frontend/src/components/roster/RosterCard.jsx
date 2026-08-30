@@ -23,6 +23,7 @@ const RosterCard = ({ artist }) => {
 				<div className='bg-gray-900 rounded-lg p-4'>
 					{/* Tier Badge */}
 					<div
+						style={{ zIndex: 100 }}
 						className={`absolute top-2 right-2 bg-gradient-to-br ${colors.bg} rounded-full p-2 ${colors.glow} shadow-lg flex items-center justify-center`}>
 						{getTierIcon(artist.overallTier)}
 						<span className='text-white font-black text-lg ml-1'>
