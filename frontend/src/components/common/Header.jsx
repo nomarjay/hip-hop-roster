@@ -51,10 +51,10 @@ const Header = () => {
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                     <Link
-                        to="/login"
+                        to="/manage-roster"
                         className="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-xl transition-all flex items-center gap-3 text-lg border border-gray-700"
                     >
-                        Admin Login
+                        Manage Roster
                     </Link>
                 </div>
 

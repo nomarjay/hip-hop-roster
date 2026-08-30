@@ -32,15 +32,15 @@ A comprehensive tier-based ranking system for hip hop artists featuring detailed
 
 \### Backend
 
-\- \*\*Java 17\*\*
+\- \*\*Node.js / Express\*\*
 
-\- \*\*Spring Boot 3.x\*\*
+\- \*\*Mongoose\*\*
 
-\- \*\*Spring Data JPA\*\*
+\- \*\*JWT and bcrypt authentication\*\*
 
-\- \*\*MySQL Database\*\*
+\- \*\*MongoDB Database\*\*
 
-\- \*\*Maven\*\*
+\- \*\*npm\*\*
 
 \- \*\*Lombok\*\*
 
@@ -72,9 +72,9 @@ Before you begin, ensure you have the following installed:
 
 \- Node.js 16 or higher
 
-\- MySQL 8.0 or higher
+\- MongoDB Community Server or MongoDB Atlas
 
-\- Maven 3.6 or higher
+\- npm
 
 
 
@@ -98,27 +98,8 @@ cd hip-hop-roster
 
 
 
-Create a MySQL database:
-
-```sql
-
-CREATE DATABASE hiphop\_roster;
-
-```
-
-
-
-Update database credentials in `src/main/resources/application.properties`:
-
-```properties
-
-spring.datasource.url=jdbc:mysql://localhost:3306/hiphop\_roster?createDatabaseIfNotExist=true
-
-spring.datasource.username=your\_mysql\_username
-
-spring.datasource.password=your\_mysql\_password
-
-```
+Install and start MongoDB Community Server, or create a MongoDB Atlas deployment.
+The default local database URI is `mongodb://127.0.0.1:27017/hiphop_roster`.
 
 
 
@@ -126,25 +107,27 @@ spring.datasource.password=your\_mysql\_password
 
 
 
-Navigate to the project root and run:
+Navigate to the `backend` directory and run:
 
 ```bash
 
-\# Install dependencies and build
+\# Copy configuration and set a secure JWT_SECRET
 
-mvn clean install
+Copy-Item .env.example .env
 
 
 
-\# Run the Spring Boot application
+\# Install dependencies and start the Node API
 
-mvn spring-boot:run
+npm install
+
+npm run dev
 
 ```
 
 
 
-The backend will start on `http://localhost:8080`
+The backend will start on `http://localhost:8086`
 
 
 
@@ -578,7 +561,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 \- Hip hop community for inspiration
 
-\- Spring Boot and React communities
+\- Node.js, MongoDB, and React communities
 
 \- All contributing artists
 

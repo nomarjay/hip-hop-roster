@@ -1,30 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-	isAuthenticated,
-	logout,
-	getUsername,
-} from '../services/authService';
 import { getAllArtists, deleteArtist } from '../services/api';
 import ArtistForm from './ArtistForm';
 import BulkImport from './BulkImport';
-import { Plus, Edit, Trash2, LogOut, User, Upload } from 'lucide-react';
+import { Plus, Edit, Trash2, Upload } from 'lucide-react';
 import React from 'react';
 
 
-const AdminDashboard = () => {
+const ManageRoster = () => {
 	const navigate = useNavigate();
 	const [artists, setArtists] = useState([]);
 	const [showForm, setShowForm] = useState(false);
 	const [showBulkImport, setShowBulkImport] = useState(false);
 	const [editingArtist, setEditingArtist] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [deletingArtistId, setDeletingArtistId] = useState(null);
+	const [deleteError, setDeleteError] = useState('');
 
 	useEffect(() => {
-		if (!isAuthenticated()) {
-			navigate('/login');
-			return;
-		}
 		fetchArtists();
 	}, [navigate]);
 
@@ -39,19 +32,23 @@ const AdminDashboard = () => {
 		}
 	};
 
-	const handleLogout = () => {
-		logout();
-		navigate('/login');
-	};
-
-	const handleDelete = async (id) => {
-		if (window.confirm('Are you sure you want to delete this artist?')) {
+	const handleDelete = async (artist) => {
+		if (window.confirm(`Delete ${artist.name}? This action cannot be undone.`)) {
+			setDeletingArtistId(artist.id);
+			setDeleteError('');
 			try {
-				await deleteArtist(id);
-				fetchArtists();
+				await deleteArtist(artist.id);
+				setArtists((currentArtists) =>
+					currentArtists.filter(({ id }) => id !== artist.id),
+				);
 			} catch (error) {
 				console.error('Error deleting artist:', error);
-				alert('Failed to delete artist');
+				setDeleteError(
+					error.response?.data?.message ||
+					'Failed to delete artist. The delete API may not be available yet.',
+				);
+			} finally {
+				setDeletingArtistId(null);
 			}
 		}
 	};
@@ -88,29 +85,23 @@ const AdminDashboard = () => {
 					<div className='flex items-center justify-between'>
 						<div>
 							<h1 className='text-3xl font-black text-white'>
-								Admin Dashboard
+								Manage Roster
 							</h1>
 							<p className='text-gray-400 mt-1'>
 								Manage Hip Hop Roster
 							</p>
 						</div>
-						<div className='flex items-center gap-4'>
-							<div className='flex items-center gap-2 text-gray-400'>
-								<User className='w-5 h-5' />
-								<span>{getUsername()}</span>
-							</div>
-							<button
-								onClick={handleLogout}
-								className='flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-white transition'>
-								<LogOut className='w-5 h-5' />
-								Logout
-							</button>
-						</div>
+						<button onClick={() => navigate('/')} className='text-gray-300 hover:text-white transition'>Back to site</button>
 					</div>
 				</div>
 			</div>
 
 			<div className='container mx-auto px-4 py-8'>
+				{deleteError && (
+					<div className='mb-6 rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-400' role='alert'>
+						{deleteError}
+					</div>
+				)}
 				{/* Actions */}
 				<div className='mb-8 flex justify-between items-center flex-wrap gap-4'>
 					<h2 className='text-2xl font-bold text-white'>
@@ -192,11 +183,13 @@ const AdminDashboard = () => {
 													className='p-2 bg-blue-500 hover:bg-blue-400 text-white rounded-lg transition'>
 													<Edit className='w-4 h-4' />
 												</button>
-												<button
-													onClick={() =>
-														handleDelete(artist.id)
-													}
-													className='p-2 bg-red-500 hover:bg-red-400 text-white rounded-lg transition'>
+											<button
+												onClick={() =>
+													handleDelete(artist)
+												}
+												disabled={deletingArtistId === artist.id}
+												aria-label={`Delete ${artist.name}`}
+												className='p-2 bg-red-500 hover:bg-red-400 text-white rounded-lg transition disabled:cursor-not-allowed disabled:opacity-50'>
 													<Trash2 className='w-4 h-4' />
 												</button>
 											</div>
@@ -225,4 +218,4 @@ const AdminDashboard = () => {
 	);
 };
 
-export default AdminDashboard;
+export default ManageRoster;

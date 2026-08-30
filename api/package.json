@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+
+
+{
+  "name": "hip-hop-roster-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Express and MongoDB API for HipHopRoster",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "seed": "node scripts/seed.js",
+    "check": "node --check server.js && node --check controllers/artistController.js && node --check controllers/badgeController.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.0"
+  }
+}
