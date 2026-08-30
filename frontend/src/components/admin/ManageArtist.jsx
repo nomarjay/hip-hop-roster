@@ -12,13 +12,15 @@ import { Plus, Edit, Trash2, LogOut, User, Upload } from 'lucide-react';
 import React from 'react';
 
 
-const AdminDashboard = () => {
+const ManageArtist = () => {
 	const navigate = useNavigate();
 	const [artists, setArtists] = useState([]);
 	const [showForm, setShowForm] = useState(false);
 	const [showBulkImport, setShowBulkImport] = useState(false);
 	const [editingArtist, setEditingArtist] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [deletingArtistId, setDeletingArtistId] = useState(null);
+	const [deleteError, setDeleteError] = useState('');
 
 	useEffect(() => {
 		if (!isAuthenticated()) {
@@ -44,14 +46,22 @@ const AdminDashboard = () => {
 		navigate('/login');
 	};
 
-	const handleDelete = async (id) => {
-		if (window.confirm('Are you sure you want to delete this artist?')) {
+	const handleDelete = async (artist) => {
+		if (window.confirm(`Delete ${artist.name}? This action cannot be undone.`)) {
+			setDeletingArtistId(artist.id);
+			setDeleteError('');
 			try {
-				await deleteArtist(id);
-				fetchArtists();
+				await deleteArtist(artist.id);
+				setArtists((currentArtists) =>
+					currentArtists.filter(({ id }) => id !== artist.id),
+				);
 			} catch (error) {
 				console.error('Error deleting artist:', error);
-				alert('Failed to delete artist');
+				setDeleteError(
+					error.response?.data?.message || 'Failed to delete artist.',
+				);
+			} finally {
+				setDeletingArtistId(null);
 			}
 		}
 	};
@@ -111,6 +121,13 @@ const AdminDashboard = () => {
 			</div>
 
 			<div className='container mx-auto px-4 py-8'>
+				{deleteError && (
+					<div
+						className='mb-6 rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-400'
+						role='alert'>
+						{deleteError}
+					</div>
+				)}
 				{/* Actions */}
 				<div className='mb-8 flex justify-between items-center flex-wrap gap-4'>
 					<h2 className='text-2xl font-bold text-white'>
@@ -194,9 +211,11 @@ const AdminDashboard = () => {
 												</button>
 												<button
 													onClick={() =>
-														handleDelete(artist.id)
+														handleDelete(artist)
 													}
-													className='p-2 bg-red-500 hover:bg-red-400 text-white rounded-lg transition'>
+													disabled={deletingArtistId === artist.id}
+													aria-label={`Delete ${artist.name}`}
+													className='p-2 bg-red-500 hover:bg-red-400 text-white rounded-lg transition disabled:cursor-not-allowed disabled:opacity-50'>
 													<Trash2 className='w-4 h-4' />
 												</button>
 											</div>
@@ -225,4 +244,4 @@ const AdminDashboard = () => {
 	);
 };
 
-export default AdminDashboard;
+export default ManageArtist;
