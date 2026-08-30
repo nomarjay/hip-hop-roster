@@ -6,7 +6,7 @@ import BulkImport from './BulkImport';
 import { Plus, Edit, Trash2, Upload } from 'lucide-react';
 import React from 'react';
 
-const ManageRoster = () => {
+const ManageArtist = () => {
     const navigate = useNavigate();
     const [artists, setArtists] = useState([]);
     const [showForm, setShowForm] = useState(false);
@@ -210,4 +210,4 @@ const ManageRoster = () => {
     );
 };
 
-export default ManageRoster;
+export default ManageArtist;

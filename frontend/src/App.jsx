@@ -5,7 +5,7 @@ import Navbar from './components/common/Navbar';
 import Home from './components/common/Home';
 import RosterView from './components/roster/RosterView';
 import ArtistDetailedView from './components/artist/ArtistDetailedView';
-import ManageRoster from './components/admin/AdminDashboard';
+import ManageAertist from './components/admin/ManageArtist;
 import { getAllArtists } from './components/services/api.js';
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Navigate to="/manage-roster" replace />} />
                 <Route path="/admin" element={<Navigate to="/manage-roster" replace />} />
-                <Route path="/manage-roster" element={<ManageRoster />} />
+                <Route path="/manage-roster" element={<ManageArtist />} />
 
                 {/* Public Routes with Navbar */}
                 <Route
