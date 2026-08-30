@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Trophy, Home, Shield, List } from 'lucide-react';
-import { isAuthenticated } from '../services/authService';
 import React from 'react';
 
 
@@ -34,23 +33,13 @@ const Navbar = () => {
                             <span className="font-semibold">Roster</span>
                         </Link>
 
-                        {isAuthenticated() ? (
-                            <Link
-                                to="/admin"
-                                className="flex items-center space-x-2 text-gray-300 hover:text-white transition"
-                            >
-                                <Shield className="w-5 h-5" />
-                                <span className="font-semibold">Admin</span>
-                            </Link>
-                        ) : (
-                            <Link
-                                to="/login"
-                                className="flex items-center space-x-2 px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-lg transition"
-                            >
-                                <Shield className="w-5 h-5" />
-                                <span>Admin Login</span>
-                            </Link>
-                        )}
+                        <Link
+                            to="/manage-roster"
+                            className="flex items-center space-x-2 text-gray-300 hover:text-white transition"
+                        >
+                            <Shield className="w-5 h-5" />
+                            <span className="font-semibold">Manage Roster</span>
+                        </Link>
                     </div>
                 </div>
             </div>

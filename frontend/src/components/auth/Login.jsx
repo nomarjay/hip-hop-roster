@@ -20,7 +20,7 @@ const Login = () => {
 
 		try {
 			await login(username, password);
-			navigate('/admin');
+			navigate('/manage-roster');
 		} catch (err) {
 			setError('Invalid username or password');
 		} finally {
@@ -33,7 +33,7 @@ const Login = () => {
 			<div className='max-w-md w-full'>
 				<div className='text-center mb-8'>
 					<h1 className='text-4xl font-black text-white mb-2'>
-						Admin Login
+						Manage Roster
 					</h1>
 					<p className='text-gray-400'>
 						Access the Hip Hop Roster dashboard

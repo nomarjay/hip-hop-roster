@@ -9,7 +9,7 @@ import React from 'react';
 const ArtistDetailView = ({ artists }) => {
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const artist = artists.find((a) => a.id === parseInt(id));
+	const artist = artists.find((a) => a.id === id);
 
 	if (!artist) {
 		return (
@@ -17,7 +17,7 @@ const ArtistDetailView = ({ artists }) => {
 				<div className='text-center'>
 					<p className='text-white text-2xl mb-4'>Artist not found</p>
 					<button
-						onClick={() => navigate('/')}
+						onClick={() => navigate('/roster')}
 						className='px-6 py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition'>
 						Back to Roster
 					</button>
