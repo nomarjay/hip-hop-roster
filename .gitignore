@@ -4,6 +4,7 @@
 .env
 .env.*
 *.env
+!backend/.env.example
 application-local.properties
 backend/src/main/resources/application-local.properties
 
@@ -19,6 +20,9 @@ dist/
 # =====================
 target/
 *.log
+backend/.mongodb/
+backend/mongodb-windows-*.zip
+backend/data/
 
 # =====================
 # IDE / OS
