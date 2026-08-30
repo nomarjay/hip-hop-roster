@@ -5,7 +5,7 @@ import Navbar from './components/common/Navbar';
 import Home from './components/common/Home';
 import RosterView from './components/roster/RosterView';
 import ArtistDetailedView from './components/artist/ArtistDetailedView';
-import ManageAertist from './components/admin/ManageArtist;
+import ManageArtist from './components/admin/ManageArtist';
 import { getAllArtists } from './components/services/api.js';
 
 function App() {
