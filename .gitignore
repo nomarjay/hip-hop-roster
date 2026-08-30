@@ -4,7 +4,7 @@
 .env
 .env.*
 *.env
-!backend/.env.example
+!api/.env.example
 application-local.properties
 backend/src/main/resources/application-local.properties
 
@@ -16,13 +16,11 @@ node_modules/
 dist/
 
 # =====================
-# BACKEND (Spring Boot)
+# API / BACKEND
 # =====================
 target/
 *.log
-backend/.mongodb/
-backend/mongodb-windows-*.zip
-backend/data/
+api/data/
 
 # =====================
 # IDE / OS
